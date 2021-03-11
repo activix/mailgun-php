@@ -11,39 +11,9 @@ declare(strict_types=1);
 
 namespace Mailgun\Model\Webhook;
 
-use Mailgun\Model\ApiResponse;
-
 /**
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-final class ShowResponse implements ApiResponse
+final class ShowResponse extends BaseResponse
 {
-    private $webhook = [];
-
-    private function __construct()
-    {
-    }
-
-    public static function create(array $data): self
-    {
-        $model = new self();
-
-        $model->webhook = $data['webhook'] ?? [];
-
-        return $model;
-    }
-
-    public function getWebhookUrl(): ?string
-    {
-        foreach ($this->getWebhookUrls() as $url) {
-            return $url;
-        }
-
-        return null;
-    }
-
-    public function getWebhookUrls(): array
-    {
-        return $this->webhook['urls'] ?? [];
-    }
 }
